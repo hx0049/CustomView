@@ -14,6 +14,7 @@ import android.widget.TextView;
 
 import hx0049.customview.R;
 
+
 /**
  * reated by hx on 2016/12/27.
  */

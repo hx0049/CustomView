@@ -1,4 +1,4 @@
-package hx0049.customview;
+package hx0049.customviewdemo;
 
 import android.app.Activity;
 import android.content.Context;

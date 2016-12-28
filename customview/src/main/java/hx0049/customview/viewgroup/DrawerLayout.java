@@ -11,6 +11,7 @@ import android.widget.LinearLayout;
 
 import hx0049.customview.R;
 
+
 /**
  * Created by hx on 2016/12/15.
  */

@@ -13,7 +13,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
-import com.bumptech.glide.Glide;
+
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -26,6 +26,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 import hx0049.customview.R;
+
 
 /**
  * Created by hx on 2016/12/15.
@@ -190,13 +191,9 @@ public class BannerView extends LinearLayout {
         }
     }
 
-    public void loadImage(String url, ImageView iv) {
-        Glide.with((Activity) getContext())
-                .load(url)
-                .into(iv);
-    }
 
-    public void load(String urlStr, ImageView iv) {
+
+    public void loadImage(String urlStr, ImageView iv) {
         try {
             URL url = new URL(urlStr);
             URLConnection urlConnection = url.openConnection();

@@ -1,4 +1,4 @@
-package hx0049.customview;
+package hx0049.customviewdemo;
 
 import android.graphics.Color;
 import android.os.Bundle;
@@ -21,9 +21,6 @@ import hx0049.customview.view.indexview.IndexView;
 import hx0049.customview.view.titlebar.TitleBar;
 import hx0049.customview.viewgroup.ArcMenu;
 import hx0049.customview.viewgroup.FlowLayout;
-
-import static android.R.attr.visibility;
-import static android.icu.lang.UCharacter.GraphemeClusterBreak.V;
 
 public class MainActivity extends AppCompatActivity {
 
