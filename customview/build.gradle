@@ -1,4 +1,17 @@
 apply plugin: 'com.android.library'
+apply plugin: 'com.novoda.bintray-release'
+
+publish {
+    userOrg = 'xiangzi' //你的用户名
+    groupId = 'hx0049.customview' //你的唯一的groupId，对应com.squareup.okhttp3:okhttp:3.4.1中的com.squareup.okhttp3
+    artifactId = 'CustomView' //你的library的名字，对应com.squareup.okhttp3:okhttp:3.4.1中的okhttp
+    publishVersion = '1.0.0' //版本号
+    desc = 'this is a customview library.'
+    website = 'https://github.com/hx0049/CustomView' //建议填写github地址，不过不影响，这里做演示填的自己的网址
+
+    bintrayUser = 'hx0049' //你的用户名
+    bintrayKey = 'XXXXXXXXXXXXXXX' //在你的账户里面查找
+}
 
 android {
     compileSdkVersion 25
