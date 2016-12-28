@@ -128,7 +128,7 @@ class CalenderPagerAdapter extends PagerAdapter {
         viewForRecycler.add((View) object);
     }
 
-    /***********************************核心算法*********************************************/
+    /***********************************core method*********************************************/
     public List<DateModel> getDataByYearAndMonth(int year, int month) {
         List<DateModel> result = new ArrayList<>();
         Calendar calendar = Calendar.getInstance();
@@ -152,7 +152,7 @@ class CalenderPagerAdapter extends PagerAdapter {
         return result;
     }
 
-    /***********************************设置Id并传至ViewPager************BEGIN*********************************/
+    /***********************************set Id and give it to ViewPager************BEGIN*********************************/
     @Override
     public void setPrimaryItem(ViewGroup container, int position, Object object) {
         ((View) object).setId(position);
@@ -166,11 +166,11 @@ class CalenderPagerAdapter extends PagerAdapter {
     public void setGetIdCallBack(GetIdCallBack getIdCallBack) {
         this.getIdCallBack = getIdCallBack;
     }
-    /***********************************设置Id并传至ViewPager**************END*******************************/
+    /***********************************set Id and give it to ViewPage**************END*******************************/
 
 
 
-    /***********************************设置滑动事件处理**************BEGIN*******************************/
+    /***********************************set scroll event**************BEGIN*******************************/
     public void setOffset(int height) {
         for (int i = 0, len = offsetList.size(); i < len; i++) {
             LinearLayout.LayoutParams pa = (LinearLayout.LayoutParams) offsetList.get(i).getLayoutParams();
@@ -238,10 +238,10 @@ class CalenderPagerAdapter extends PagerAdapter {
             }
         }
     }
-    /***********************************设置滑动事件处理**************END*******************************/
+    /************************************set scroll event******************END*******************************/
 
 
-    /***********************************单位转换工具类**************BEGIN*******************************/
+    /***********************************change value among px sp and dp**************BEGIN*******************************/
     private int dp2px(int dpValue) {
         return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dpValue, context.getResources().getDisplayMetrics());
     }
@@ -249,5 +249,5 @@ class CalenderPagerAdapter extends PagerAdapter {
     private int sp2px(int spValue) {
         return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, spValue, context.getResources().getDisplayMetrics());
     }
-    /***********************************单位转换工具类**************END*******************************/
+    /**********************************change value among px sp and dp*************END*******************************/
 }

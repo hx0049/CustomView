@@ -56,7 +56,7 @@ public class PinYinUtil {
     public static PinYinUtil getInstance() {
         return pinYinUtil;
     }
-    // 汉字转成ASCII码
+    // chinese to ASCII
     private int getChsAscii(String chs) {
         int asc = 0;
         try {
@@ -77,7 +77,7 @@ public class PinYinUtil {
         }
         return asc;
     }
-    // 单字解析
+    // single Chinese to ASCII
     public String convert(String str) {
         String result = null;
         int ascii = getChsAscii(str);
@@ -93,7 +93,7 @@ public class PinYinUtil {
         }
         return result;
     }
-    // 词组解析
+    // all Chinese 2 pinyin
     public String getSelling(String chs) {
         String key, value;
         buffer = new StringBuilder();

@@ -71,14 +71,14 @@ public class IndexView extends LinearLayout implements SideBar.OnSelectListener,
 
     public IndexView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-        //获取自定义属性
+        //get the attribute from xml
         TypedArray ta = getContext().obtainStyledAttributes(attrs, R.styleable.IndexView);
         showAllLetter = ta.getBoolean(R.styleable.IndexView_show_all_letter, true);
         showSearchView = ta.getBoolean(R.styleable.IndexView_show_search_view, true);
         showCenterLetter = ta.getBoolean(R.styleable.IndexView_show_center_letter, true);
         ta.recycle();
 
-        //Inflater的
+        //Inflater
         View view = LayoutInflater.from(getContext()).inflate(R.layout.index_view, this);
         recyclerView = (RecyclerView) view.findViewById(R.id.recycler_view);
         sideBar = (SideBar) view.findViewById(R.id.side_view);
@@ -100,23 +100,23 @@ public class IndexView extends LinearLayout implements SideBar.OnSelectListener,
     }
 
     public void setData(List<String> stringList) {
-        //清空无效字符串
+        //clear the wrong string
         for (int i = stringList.size() - 1; i > 0; i--) {
             if (TextUtils.isEmpty(stringList.get(i))) {
                 stringList.remove(i);
             }
         }
-        //清除EditText
+        //clear the EditText
         editText.setText("");
-        //设置为非过滤状态
+        //set mode no-filter
         isFilterMode = false;
-        //初始赋值
+        //init
         for (int i = stringList.size() - 1; i > 0; i--) {
             modelList.add(0, new StringModel(stringList.get(i)));
         }
-        //数组排序
+        //sort the strings
         Collections.sort(modelList, comparator);
-        //获取首字母位置 && 首字母个数
+        //get the first letter position and number
         int charLength = 0;
         for (int i = 0, len = modelList.size(); i < len; i++) {
             if (i == 0) {
@@ -131,7 +131,7 @@ public class IndexView extends LinearLayout implements SideBar.OnSelectListener,
                 }
             }
         }
-        //是否显示全部字母
+        //show all number or not
         if (!showAllLetter) {
             char[] newLetters = new char[charLength];
             for (int i = 0, j = 0, len = modelList.size(); i < len; i++) {
@@ -142,7 +142,7 @@ public class IndexView extends LinearLayout implements SideBar.OnSelectListener,
             }
             sideBar.setLetters(newLetters);
         }
-        //通知Adapter更新
+        //notify the Adapter
         adapter.notifyDataSetChanged();
     }
 
@@ -150,18 +150,18 @@ public class IndexView extends LinearLayout implements SideBar.OnSelectListener,
      * 根据value过滤数据
      */
     public void setFilterData(String value) {
-        //设置为过滤模式
+        //set mode filter
         isFilterMode = true;
-        //过滤数据
+        //filter the data
         for (int i = modelList.size() - 1; i >= 0; i--) {
             if (modelList.get(i).getContent().toLowerCase().indexOf(value.toLowerCase()) == 0 ||
                     modelList.get(i).getPingYin().toLowerCase().indexOf(value.toLowerCase()) == 0) {
                 filterList.add(0, modelList.get(i));
             }
         }
-        //排序
+        //sort
         Collections.sort(filterList, comparator);
-        //获取首字母位置 && 首字母数量
+        //get the first letter position and number
         int charLength = 0;
         for (int i = 0, len = filterList.size(); i < len; i++) {
             if (i == 0) {
@@ -176,7 +176,7 @@ public class IndexView extends LinearLayout implements SideBar.OnSelectListener,
                 }
             }
         }
-        //是否显示全部字母
+        //show all number  or not
         if (!showAllLetter) {
             char[] newLetters = new char[charLength];
             for (int i = 0, j = 0, len = filterList.size(); i < len; i++) {
@@ -187,12 +187,12 @@ public class IndexView extends LinearLayout implements SideBar.OnSelectListener,
             }
             sideBar.setLetters(newLetters);
         }
-        //通知Adapter更新
+        //notify the Adapter
         adapter.notifyDataSetChanged();
     }
 
     /**
-     * 滑动到对应字母的位置
+     * scroll to the position of the letter
      */
     public void rollPositionForChar(char letter) {
         for (int i = 0, len = modelList.size(); i < len; i++) {
@@ -204,7 +204,7 @@ public class IndexView extends LinearLayout implements SideBar.OnSelectListener,
     }
 
     /**
-     * 当对应的右侧sidebar字母被按下的显示状态
+     * when the right letter was selected
      */
     @Override
     public void onSelect(int pressPosition, char letter) {
@@ -216,7 +216,7 @@ public class IndexView extends LinearLayout implements SideBar.OnSelectListener,
     }
 
     /**
-     * 当对应的右侧sidebar字母被取消按下的显示状态
+     * when the right letter was selected canceled
      */
     @Override
     public void onEndSelect() {
@@ -234,7 +234,7 @@ public class IndexView extends LinearLayout implements SideBar.OnSelectListener,
     }
 
     /**
-     * EditText监听文本变化，变化后过滤
+     * EditText listener
      */
     @Override
     public void afterTextChanged(Editable s) {
@@ -286,7 +286,7 @@ public class IndexView extends LinearLayout implements SideBar.OnSelectListener,
         @Override
         public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
             StringModel model;
-            //对不同的模式取对应的数据
+            //show the different data for different mode
             if (!isFilterMode) {
                 model = modelList.get(position);
             } else {
@@ -304,7 +304,7 @@ public class IndexView extends LinearLayout implements SideBar.OnSelectListener,
 
         @Override
         public int getItemCount() {
-            //对不同的模式给不同的count
+            //ensure count for different mode
             return isFilterMode ? filterList.size() : modelList.size();
         }
 
@@ -345,7 +345,7 @@ public class IndexView extends LinearLayout implements SideBar.OnSelectListener,
     }
 
     /**
-     * item点击事件
+     * item click event
      */
     public interface OnItemClickListener {
         void onItemClick(String content);
@@ -357,7 +357,7 @@ public class IndexView extends LinearLayout implements SideBar.OnSelectListener,
         this.onItemClickListener = onItemClickListener;
     }
     /**
-     * item长按事件
+     * item long click event
      */
     public interface OnItemLongClickListener {
         void onItemLongClick(String content);

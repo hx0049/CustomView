@@ -131,7 +131,7 @@ public class TitleBar extends LinearLayout implements View.OnClickListener {
     }
 
     /**
-     * 右边Icon点击事件
+     * right Icon click event
      */
 
     public interface OnRightClickListener {
@@ -145,7 +145,7 @@ public class TitleBar extends LinearLayout implements View.OnClickListener {
     }
 
     /**
-     * 返回点击事件
+     * back click event
      */
 
     public interface OnLeftClickListener {
@@ -159,7 +159,7 @@ public class TitleBar extends LinearLayout implements View.OnClickListener {
     }
 
     /**
-     * 标题点击事件
+     * title click event
      */
     public interface OnTitleClickListener {
         void onTitleClick();

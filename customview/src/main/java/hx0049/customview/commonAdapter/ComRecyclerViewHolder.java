@@ -60,7 +60,7 @@ public class ComRecyclerViewHolder extends RecyclerView.ViewHolder {
 
 
     /**
-     * 设置本地图片为背景
+     * set local resource picture to background
      */
     public ComRecyclerViewHolder setBackgroundResource(int viewId, int picId) {
         ImageView imageView = getView(viewId);
@@ -69,7 +69,7 @@ public class ComRecyclerViewHolder extends RecyclerView.ViewHolder {
     }
 
     /**
-     * 加载网络图片
+     * load the picture from internet
      */
     public ComRecyclerViewHolder loadImage(int viewId, String url) {
         ImageView imageView = getView(viewId);
@@ -83,20 +83,11 @@ public class ComRecyclerViewHolder extends RecyclerView.ViewHolder {
         return this;
     }
 
-    /**
-     * 加载网络图片
-     * 为使效果和其他医院列表一致专门写的方法
-     * 只在导诊页医院列表使用
-     */
-    public ComRecyclerViewHolder loadImageToBackByTag(int viewId, final String url) {
-        ImageView imageView = getView(viewId);
 
-        return this;
-    }
 
     /**
-     * 加载网络图片
-     * 裁剪成圆形
+     * load the picture from internet
+     * and clip to round
      */
     public ComRecyclerViewHolder loadRoundImageToBack(int viewId, final String url) {
         ImageView imageView = getView(viewId);
@@ -105,8 +96,7 @@ public class ComRecyclerViewHolder extends RecyclerView.ViewHolder {
     }
 
     /**
-     * 加载本地图片
-     * 不建议使用，重复创建Bitmap，耗内存情况较严重
+     * load the picture from resource as bitmap
      */
     public ComRecyclerViewHolder setBitmap(int viewId, int resourceId) {
         Bitmap bitmap = BitmapFactory.decodeResource(context.getResources(), resourceId);
@@ -118,8 +108,7 @@ public class ComRecyclerViewHolder extends RecyclerView.ViewHolder {
     }
 
     /**
-     * 直接加载Bitmap
-     * 建议使用（使用时应将多次重复使用的Bitmap作为成员变量在构造方法中初始化）
+     * load the bitmap to imageView
      */
     public ComRecyclerViewHolder setBitmap(int viewId, Bitmap bitmap) {
         ImageView imageView = getView(viewId);
@@ -130,7 +119,7 @@ public class ComRecyclerViewHolder extends RecyclerView.ViewHolder {
     }
 
     /**
-     * 设置字体颜色
+     * set text color
      */
     public ComRecyclerViewHolder setTextColor(int viewId, int colorId) {
         TextView view = getView(viewId);
@@ -139,7 +128,7 @@ public class ComRecyclerViewHolder extends RecyclerView.ViewHolder {
     }
 
     /**
-     * 设置背景颜色
+     * set background color
      */
     public ComRecyclerViewHolder setBackgroundColor(int viewId, int colorId) {
         View view = getView(viewId);
@@ -148,7 +137,7 @@ public class ComRecyclerViewHolder extends RecyclerView.ViewHolder {
     }
 
     /**
-     * 设置View是否Gone
+     * set view gone or not
      */
     public ComRecyclerViewHolder setVisible(int viewId, boolean isVisible) {
         View view = getView(viewId);

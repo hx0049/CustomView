@@ -126,7 +126,7 @@ public class SideBar extends View {
     }
 
     /**
-     * 获取触摸位置并重画sideBar
+     * get the touch position and invalidate
      */
     private void getPressPositionAndInvalidate(float x, float y) {
         for (int i = 0; i < yPosition.length; i++) {
@@ -146,7 +146,7 @@ public class SideBar extends View {
     }
 
     /**
-     * 触摸回调
+     * touch callBack
      */
     public interface OnSelectListener {
         void onSelect(int pressPosition, char letter);

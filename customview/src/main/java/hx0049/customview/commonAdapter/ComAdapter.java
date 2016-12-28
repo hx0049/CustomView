@@ -15,7 +15,7 @@ import java.util.List;
 
 /**
  * Created by hx on 2016/11/28.
- * 通用RecyclerView.Adapter
+ * Common RecyclerView.Adapter
  */
 
 public class ComAdapter<T> extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
@@ -42,21 +42,21 @@ public class ComAdapter<T> extends RecyclerView.Adapter<RecyclerView.ViewHolder>
     private boolean canReadBottom = true;
 
     /**
-     * 构造方法
+     * construct
      */
     public ComAdapter(Context context) {
         this.context = context;
     }
 
     /**
-     * 初始化
+     * init
      */
     public static ComAdapter with(Context context) {
         return new ComAdapter(context);
     }
 
     /**
-     * 设置数据
+     * set data
      */
     public ComAdapter setData(List<T> list) {
         this.list = list;
@@ -65,7 +65,7 @@ public class ComAdapter<T> extends RecyclerView.Adapter<RecyclerView.ViewHolder>
     }
 
     /**
-     * 设置ItemView的LayoutId
+     * set ItemView LayoutId
      */
     public ComAdapter setItemView(int itemId) {
         this.itemId = itemId;
@@ -73,7 +73,7 @@ public class ComAdapter<T> extends RecyclerView.Adapter<RecyclerView.ViewHolder>
     }
 
     /**
-     * 设置FootView的LayoutId
+     * set FootView LayoutId
      */
     public ComAdapter setFootView(int footId) {
         this.footId = footId;
@@ -82,7 +82,7 @@ public class ComAdapter<T> extends RecyclerView.Adapter<RecyclerView.ViewHolder>
     }
 
     /**
-     * 设置HeadView的LayoutId
+     * set HeadView LayoutId
      */
     public ComAdapter setHeadView(int headId) {
         this.headId = headId;
@@ -92,8 +92,8 @@ public class ComAdapter<T> extends RecyclerView.Adapter<RecyclerView.ViewHolder>
 
 
     /**
-     * 设置EmptyView的LayoutId
-     * 优先级较低
+     * set EmptyView LayoutId
+     * priority is lower than next one
      */
     public ComAdapter setEmptyView(int emptyId) {
         this.emptyId = emptyId;
@@ -102,7 +102,7 @@ public class ComAdapter<T> extends RecyclerView.Adapter<RecyclerView.ViewHolder>
     }
 
     /**
-     * 无数据提示语
+     * set no data tips
      */
     public ComAdapter setNoDataNotice(String notice) {
         this.notice = notice;
@@ -110,7 +110,7 @@ public class ComAdapter<T> extends RecyclerView.Adapter<RecyclerView.ViewHolder>
     }
 
     /**
-     * load字符串
+     * set load string
      */
     public ComAdapter setLoadString(String loadMore, String loadDone) {
         this.loadMore = loadMore;
@@ -119,8 +119,8 @@ public class ComAdapter<T> extends RecyclerView.Adapter<RecyclerView.ViewHolder>
     }
 
     /**
-     * 设置EmptyView
-     * 优先级较高
+     * set EmptyView
+     * the priority is higher than empty view id
      */
     public ComAdapter setEmptyView(View emptyView) {
         this.emptyView = emptyView;
@@ -129,7 +129,7 @@ public class ComAdapter<T> extends RecyclerView.Adapter<RecyclerView.ViewHolder>
     }
 
     /**
-     * 设置RecyclerView为垂直状态
+     * set RecyclerView linear vertical
      */
     public ComAdapter loadVertical(RecyclerView rv) {
         rv.setLayoutManager(new LinearLayoutManager(context));
@@ -138,7 +138,7 @@ public class ComAdapter<T> extends RecyclerView.Adapter<RecyclerView.ViewHolder>
     }
 
     /**
-     * 设置RecyclerView为水平状态
+     * set RecyclerView linear horizontal
      */
     public ComAdapter loadHorizontal(RecyclerView rv) {
         rv.setLayoutManager(new LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false));
@@ -147,7 +147,7 @@ public class ComAdapter<T> extends RecyclerView.Adapter<RecyclerView.ViewHolder>
     }
 
     /**
-     * 设置RecyclerView为垂直网格状态
+     * set RecyclerView grid vertical
      */
     public ComAdapter loadGridVertical(RecyclerView rv, int spanCount) {
         rv.setLayoutManager(new GridLayoutManager(context, spanCount));
@@ -156,7 +156,7 @@ public class ComAdapter<T> extends RecyclerView.Adapter<RecyclerView.ViewHolder>
     }
 
     /**
-     * 设置RecyclerView为水平网格状态
+     * set RecyclerView grid horizontal
      */
     public ComAdapter loadGridHorizontal(RecyclerView rv, int spanCount) {
         rv.setLayoutManager(new GridLayoutManager(context, spanCount, LinearLayoutManager.HORIZONTAL, false));
@@ -165,7 +165,7 @@ public class ComAdapter<T> extends RecyclerView.Adapter<RecyclerView.ViewHolder>
     }
 
     /**
-     * 设置RecyclerView为水平瀑布流
+     * set RecyclerView staggered horizontal
      */
     public ComAdapter loadStaggeredGridHorizontal(RecyclerView rv, int spanCount) {
         rv.setLayoutManager(new StaggeredGridLayoutManager(spanCount, StaggeredGridLayoutManager.HORIZONTAL));
@@ -174,7 +174,7 @@ public class ComAdapter<T> extends RecyclerView.Adapter<RecyclerView.ViewHolder>
     }
 
     /**
-     * 设置RecyclerView为垂直瀑布流
+     * set RecyclerView staggered vertical
      */
     public ComAdapter loadStaggeredGridVertical(RecyclerView rv, int spanCount) {
         rv.setLayoutManager(new StaggeredGridLayoutManager(spanCount, StaggeredGridLayoutManager.VERTICAL));
@@ -183,7 +183,7 @@ public class ComAdapter<T> extends RecyclerView.Adapter<RecyclerView.ViewHolder>
     }
 
     /**
-     * footView以Load模式显示
+     * footView is shown as Load mode
      */
     public ComAdapter asLoadMode() {
         isLoadMode = true;
@@ -201,7 +201,7 @@ public class ComAdapter<T> extends RecyclerView.Adapter<RecyclerView.ViewHolder>
     }
 
     /**
-     * 设置Load模式最大size
+     * set Load mode max size
      */
     public ComAdapter setLoadModeMaxSize(long size) {
         this.loadModeMaxSize = size;
@@ -210,7 +210,7 @@ public class ComAdapter<T> extends RecyclerView.Adapter<RecyclerView.ViewHolder>
     }
 
     /**
-     * 增加新数据
+     * add extra data
      */
     public ComAdapter setExtraData(List<T> extraData) {
         canReadBottom = true;
@@ -278,7 +278,7 @@ public class ComAdapter<T> extends RecyclerView.Adapter<RecyclerView.ViewHolder>
     }
 
     /**
-     * list是否无数据
+     * list is empty or not
      */
     private boolean isDataEmpty() {
         if (list == null) {
@@ -365,7 +365,7 @@ public class ComAdapter<T> extends RecyclerView.Adapter<RecyclerView.ViewHolder>
     }
 
     /**
-     * 显示load提示字符串
+     * show load string
      */
     private void showLoadString(View wholeView) {
         TextView tv = getTextViewFromView(wholeView);
@@ -380,7 +380,7 @@ public class ComAdapter<T> extends RecyclerView.Adapter<RecyclerView.ViewHolder>
     }
 
     /**
-     * 显示无数据提示字符串
+     * show no data string
      */
     private void showNotice(View view) {
         TextView tv = getTextViewFromView(view);
@@ -390,7 +390,7 @@ public class ComAdapter<T> extends RecyclerView.Adapter<RecyclerView.ViewHolder>
     }
 
     /**
-     * 从View中获取第一个textView
+     * get the first textView from View
      */
     private TextView getTextViewFromView(View view) {
         if (view instanceof ViewGroup) {
@@ -413,7 +413,7 @@ public class ComAdapter<T> extends RecyclerView.Adapter<RecyclerView.ViewHolder>
     }
 
     /**
-     * 点击事件
+     * click event
      */
     public interface OnItemClickListener {
         void onItemClick(int position, Object object);
@@ -427,7 +427,7 @@ public class ComAdapter<T> extends RecyclerView.Adapter<RecyclerView.ViewHolder>
     }
 
     /**
-     * 长按事件
+     * long click event
      */
     public interface OnItemLongClickListener {
         void onItemClick(int position, Object o);
@@ -441,7 +441,7 @@ public class ComAdapter<T> extends RecyclerView.Adapter<RecyclerView.ViewHolder>
     }
 
     /**
-     * 底部监听
+     * bottom listener
      */
     public interface OnBottomLister {
         void onBottom();
@@ -455,7 +455,7 @@ public class ComAdapter<T> extends RecyclerView.Adapter<RecyclerView.ViewHolder>
     }
 
     /**
-     * item布局
+     * item layout bind data
      */
     public interface ShowItem {
         void show(ComRecyclerViewHolder viewHolder, Object object);
@@ -469,7 +469,7 @@ public class ComAdapter<T> extends RecyclerView.Adapter<RecyclerView.ViewHolder>
     }
 
     /**
-     * head布局
+     * head layout bind data
      */
     public interface ShowHead {
         void show(ComRecyclerViewHolder viewHolder);
@@ -483,7 +483,7 @@ public class ComAdapter<T> extends RecyclerView.Adapter<RecyclerView.ViewHolder>
     }
 
     /**
-     * foot布局
+     * foot layout bind data
      */
     public interface ShowFoot {
         void show(ComRecyclerViewHolder viewHolder);
@@ -497,7 +497,7 @@ public class ComAdapter<T> extends RecyclerView.Adapter<RecyclerView.ViewHolder>
     }
 
     /**
-     * 单位转换工具类
+     * convert among sp px dp
      */
     private float sp2px(int spValue) {
         float fontScale = context.getResources().getDisplayMetrics().scaledDensity;
@@ -521,7 +521,7 @@ public class ComAdapter<T> extends RecyclerView.Adapter<RecyclerView.ViewHolder>
     }
 
     /**
-     * 补充支持：gridLayout支持HeadView and FootView
+     * support gridLayout for HeadView and FootView
      */
     @Override
     public void onAttachedToRecyclerView(RecyclerView recyclerView) {
@@ -542,7 +542,7 @@ public class ComAdapter<T> extends RecyclerView.Adapter<RecyclerView.ViewHolder>
     }
 
     /**
-     * 补充支持：staggeredGridLayout支持HeadView and FootView
+     * support staggeredGridLayout for HeadView and FootView
      */
     @Override
     public void onViewAttachedToWindow(RecyclerView.ViewHolder holder) {

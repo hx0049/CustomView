@@ -29,7 +29,7 @@ public abstract class SlideAdapter extends RecyclerView.Adapter<SlideAdapter.Sli
         layout.addView(view, new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
         TextView tv = new TextView(parent.getContext());
         tv.setGravity(Gravity.CENTER);
-        tv.setText("删除");
+        tv.setText("delete");
         layout.addView(tv, new LinearLayout.LayoutParams(getMenuWidthPixel(), ViewGroup.LayoutParams.MATCH_PARENT));
         slideMenu.addView(layout);
         slideMenu.setOpenOrCloseCallBack(this);

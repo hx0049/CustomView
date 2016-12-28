@@ -35,8 +35,8 @@ import hx0049.customview.R;
 public class BannerView extends LinearLayout {
 
     public static final int ROLL_TIME = 2000;
-    public static final int MODE_ALL = 0; //有几个显示几个
-    public static final int MODE_CIRCLE = 1; //循环显示
+    public static final int MODE_ALL = 0; //show all
+    public static final int MODE_CIRCLE = 1; // show infinite
 
 
     private Timer timer = new Timer();
@@ -72,11 +72,11 @@ public class BannerView extends LinearLayout {
         if (viewPager.getAdapter() == null) {
             viewPager.setAdapter(new BannerAdapter());
             if (mode == MODE_ALL) {
-                //最多list.size个页面
+                //page number at most list.size
                 viewPager.setCurrentItem(0);
                 pointView.setCurrentPosition(0);
             } else {
-                //最多Integer.MAX_VALUE个页面
+                //page number at most Integer.Max_Value
                 viewPager.setCurrentItem(getMiddlePosition());
                 pointView.setCurrentPosition(getMiddlePosition() % urlSize);
             }
@@ -99,7 +99,7 @@ public class BannerView extends LinearLayout {
         });
 
 
-        //开始轮播图片
+        //start roll picture
         startRollPicture();
     }
 

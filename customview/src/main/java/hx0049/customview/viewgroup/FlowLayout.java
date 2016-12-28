@@ -31,11 +31,11 @@ public class FlowLayout extends ViewGroup {
         int widthSize = MeasureSpec.getSize(widthMeasureSpec);
         int heightMode = MeasureSpec.getMode(heightMeasureSpec);
         int heightSize = MeasureSpec.getSize(heightMeasureSpec);
-        //如果当前ViewGroup宽高为 wrap_content : wrap_content
-        //记录计算的宽高
+        //if ViewGroup was  wrap_content and  wrap_content
+        //calculate the width and height
         int width = 0;
         int height = 0;
-        //记录每一行的宽高
+        //record the height of every line
         int lineHeight = 0;
         int lineWidth = 0;
 
@@ -47,25 +47,25 @@ public class FlowLayout extends ViewGroup {
             int childWidth = child.getMeasuredWidth() + params.leftMargin + params.rightMargin;
             int childHeight = child.getMeasuredHeight() + params.topMargin + params.bottomMargin;
             if (lineWidth + childWidth > widthSize) {
-                //要换行，记录最大宽度
+                //need to change line，record the max line height
                 width = Math.max(width,lineWidth);
-                //重置lineWidth
+                //reset lineWidth
                 lineWidth = 0;
-                //增加高度
+                //add all height
                 height = height + lineHeight;
-                //计算下一行高度
+                //calculate the next line height
                 lineHeight = childHeight;
             } else {
-                //获取最大行高
+                //get the max line height
                 lineHeight = Math.max(lineHeight, childHeight);
-                //叠加行宽
+                //add line width
                 lineWidth = lineWidth + childWidth;
             }
 
             if (i == childCount - 1) {
-                //增加最后一行的高度
+                //add the last line height
                 height = height + lineHeight;
-                //计算最大宽度
+                //calculate the width
                 width = Math.max(width, lineWidth);
             }
         }
@@ -73,22 +73,22 @@ public class FlowLayout extends ViewGroup {
                 heightMode == MeasureSpec.EXACTLY ? heightSize : height);
     }
 
-    //存储所有子View
+    //restore child View
     private List<List<View>> mAllChildViews = new ArrayList<>();
-    //每一行的高度
+    //record the height of every line
     private List<Integer> mLineHeight = new ArrayList<>();
 
     @Override
     protected void onLayout(boolean b, int A_left, int A_top, int A_right, int A_bottom) {
         mAllChildViews.clear();
         mLineHeight.clear();
-        //获取当前View的宽度
+        //get the height of AllView
         int width = getMeasuredWidth();
 
         int lineWidth = 0;
         int lineHeight = 0;
 
-        //记录当前行的view
+        //record the view of current line
         List<View> lineViews = new ArrayList<>();
 
         int childCount = getChildCount();
@@ -97,7 +97,7 @@ public class FlowLayout extends ViewGroup {
             MarginLayoutParams lp = (MarginLayoutParams) child.getLayoutParams();
             int childWidth = child.getMeasuredWidth() + lp.leftMargin + lp.rightMargin;
             int childHeight = child.getMeasuredHeight() + lp.topMargin + lp.bottomMargin;
-            //需要换行
+            //need to change line
             if (childWidth + lineWidth > width) {
                 mLineHeight.add(lineHeight);
                 mAllChildViews.add(lineViews);
@@ -111,14 +111,14 @@ public class FlowLayout extends ViewGroup {
                 lineViews.add(child);
             }
         }
-        //处理最后一行
+        //do something with the last line
         mLineHeight.add(lineHeight);
         mAllChildViews.add(lineViews);
 
-        //设置子View的位置
+        //set the position of child View
         int left = 0;
         int top = 0;
-        //行数
+        //line number
         int lineNumber = mLineHeight.size();
         for (int i = 0; i < lineNumber; i++) {
             List<View> viewList = mAllChildViews.get(i);
@@ -142,7 +142,7 @@ public class FlowLayout extends ViewGroup {
 
     }
     /**
-     * 与当前ViewGroup对应的LayoutParams
+     * generate LayoutParams for current view
      */
     @Override
     public LayoutParams generateLayoutParams(AttributeSet attrs) {

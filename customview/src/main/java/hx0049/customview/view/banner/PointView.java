@@ -9,11 +9,11 @@ import android.view.View;
 
 /**
  * Created by hx on 2016/12/16.
- * BannerView 辅助类
+ * BannerView assistance
  */
 
 public class PointView extends View {
-    int number = 1;//小圆点个数
+    int number = 1;// the small point number
     int currentPosition = 0;
     int radius = 5;//px
     int gap = 20;//px

@@ -41,13 +41,13 @@ public class CalendarViewPager extends ViewPager implements GetIdCallBack{
             super.onMeasure(widthMeasureSpec, heightMeasureSpec);
         } catch (NullPointerException e) {
             int height = 0;
-            //下面遍历所有child的高度
+            //get all child's height and get the highest one
             for (int i = 0; i < getChildCount(); i++) {
                 View child = getChildAt(i);
                 child.measure(widthMeasureSpec,
                         MeasureSpec.makeMeasureSpec(0, MeasureSpec.UNSPECIFIED));
                 int h = child.getMeasuredHeight();
-                if (h > height) //采用最大的view的高度。
+                if (h > height)
                     height = h;
             }
 

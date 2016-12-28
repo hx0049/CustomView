@@ -12,39 +12,34 @@ import java.util.List;
 
 /**
  * Created by hx on 2016/7/7.
- * 使用说明：继承此Adapter，必须重写构造方法和以下3个方法
- * convert(item布局赋值),convert_head(head布局赋值),convert_foot(foot布局赋值)
- * 不需要有head布局或foot布局：对应的方法体直接置为空
- * 需要head布局或foot布局：调用setHeaderView或setFootView方法，并补充对应的方法体
- * 需要设置没有数据时显示EmptyView：调用setEmptyView
  */
 public abstract class ComRecyclerAdapter<T> extends RecyclerView.Adapter<RecyclerView.ViewHolder> implements View.OnClickListener, View.OnLongClickListener {
     private static final String TAG = "ComRecyclerAdapter";
-    //四种ViewType
+    //four ViewType
     public static final int TYPE_FOOTER = 0;
     public static final int TYPE_BODY = 1;
     public static final int TYPE_HEADER = 2;
     public static final int TYPE_EMPTY = 3;
-    //上下文
+    //context
     protected Context context;
-    //数据集合
+    //data
     public List<T> list;
-    //四种布局Id：item,head,foot,empty
+    //four Id：item,head,foot,empty
     public int layoutId;
     public int layoutId_head;
     public int layoutId_foot;
     public int layoutId_empty = -1;
-    //提示语
+    //tips
     public String notice;
-    //是否有head布局，foot布局
+    //has head,foot or not
     public boolean isHaveHeadView = false;
     public boolean isHaveFootView = false;
-    //设置是否监听recyclerView到底部
+    //set recyclerView bottom listener work or not
     public boolean canNotReadBottom = true;
 
     /**
-     * 构造方法
-     * 参数：上下文，数据，item布局Id
+     * Constructor
+     * parameters: context data itemLayout id
      */
     public ComRecyclerAdapter(Context context, List<T> list, int layoutId) {
         this.context = context;
@@ -53,8 +48,7 @@ public abstract class ComRecyclerAdapter<T> extends RecyclerView.Adapter<Recycle
     }
 
     /**
-     * 设置无数据时EmptyView
-     * 参数：emptyView布局Id
+     * set no data EmptyViewId
      */
     public void setEmptyView(int layoutId_empty) {
         this.layoutId_empty = layoutId_empty;
@@ -62,8 +56,7 @@ public abstract class ComRecyclerAdapter<T> extends RecyclerView.Adapter<Recycle
     }
 
     /**
-     * 设置无数据时EmptyView
-     * 参数：emptyView布局Id，提示语
+     * set no data EmptyViewId and string
      */
     public void setEmptyView(int layoutId_empty, String notice) {
         this.layoutId_empty = layoutId_empty;
@@ -73,10 +66,9 @@ public abstract class ComRecyclerAdapter<T> extends RecyclerView.Adapter<Recycle
     }
 
     /**
-     * 判断数据是否为空
+     * judge the data is empty or not
      */
     public boolean isDataEmpty() {
-        //判断是否有数据
         if (list != null && list.size() > 0) {
             return false;
         } else {
@@ -85,10 +77,9 @@ public abstract class ComRecyclerAdapter<T> extends RecyclerView.Adapter<Recycle
     }
 
     /**
-     * 是否有EmptyView
+     * has EmptyView or not
      */
     public boolean isHaveEmptyView() {
-        //是否设置了EmptyView
         if (layoutId_empty == -1) {
             return false;
         } else {
@@ -98,7 +89,7 @@ public abstract class ComRecyclerAdapter<T> extends RecyclerView.Adapter<Recycle
 
 
     /**
-     * 设置是否监听底部
+     * set bottomListener work or not
      */
     public void setCanNotReadBottom(boolean canNotReadBottom) {
         this.canNotReadBottom = canNotReadBottom;
@@ -109,7 +100,7 @@ public abstract class ComRecyclerAdapter<T> extends RecyclerView.Adapter<Recycle
     }
 
     /**
-     * 设置Head布局
+     * set Head layout id
      */
     public void setHeadViewId(int layoutId) {
         if (layoutId > 0) {
@@ -119,7 +110,7 @@ public abstract class ComRecyclerAdapter<T> extends RecyclerView.Adapter<Recycle
     }
 
     /**
-     * 设置Foot布局
+     * set Foot layout id
      */
     public void setFootViewId(int layoutId) {
         if (layoutId > 0) {
@@ -130,7 +121,7 @@ public abstract class ComRecyclerAdapter<T> extends RecyclerView.Adapter<Recycle
 
 
     /**
-     * 根据position设置ViewType
+     *  get ViewType from position
      */
     @Override
     public int getItemViewType(int position) {
@@ -160,13 +151,13 @@ public abstract class ComRecyclerAdapter<T> extends RecyclerView.Adapter<Recycle
     }
 
     /**
-     * 根据ViewType创建View
-     * 此方法只执行一次
+     * create view by ViewType
+     * only run when need create
      */
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         if (viewType == TYPE_EMPTY) {
-            //EmptyView布局
+            //EmptyView layout
             if (!isHaveEmptyView()) {
                 throw new NullPointerException("ComRecyclerAdapter: EmptyView must not be null!");
             }
@@ -174,14 +165,14 @@ public abstract class ComRecyclerAdapter<T> extends RecyclerView.Adapter<Recycle
             return comRecyclerViewHolder;
 
         } else if (viewType == TYPE_HEADER) {
-            //headView布局
+            //headView layout
             ComRecyclerViewHolder comRecyclerViewHolder = ComRecyclerViewHolder.getComRecyclerViewHolder(context, layoutId_head, parent);
             return comRecyclerViewHolder;
         } else if (viewType == TYPE_BODY) {
             ComRecyclerViewHolder comRecyclerViewHolder = ComRecyclerViewHolder.getComRecyclerViewHolder(context, layoutId, parent);
             return comRecyclerViewHolder;
         } else if (viewType == TYPE_FOOTER) {
-            //footView布局
+            //footView layout
             ComRecyclerViewHolder comRecyclerViewHolder = ComRecyclerViewHolder.getComRecyclerViewHolder(context, layoutId_foot, parent);
             return comRecyclerViewHolder;
         }
@@ -189,8 +180,7 @@ public abstract class ComRecyclerAdapter<T> extends RecyclerView.Adapter<Recycle
     }
 
     /**
-     * 根据位置给各个布局赋值
-     * 循环复用，多次执行
+     * get the viewHolder for position and bind data
      */
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
@@ -199,7 +189,7 @@ public abstract class ComRecyclerAdapter<T> extends RecyclerView.Adapter<Recycle
             convertEmpty(comRecyclerViewHolder);
         } else if (getItemViewType(position) == TYPE_HEADER) {
             ComRecyclerViewHolder comRecyclerViewHolder = (ComRecyclerViewHolder) holder;
-            //赋值
+            //bind data
             convertHeader(comRecyclerViewHolder);
         } else if (getItemViewType(position) == TYPE_BODY) {
             ComRecyclerViewHolder comRecyclerViewHolder = (ComRecyclerViewHolder) holder;
@@ -214,7 +204,7 @@ public abstract class ComRecyclerAdapter<T> extends RecyclerView.Adapter<Recycle
             comRecyclerViewHolder.getWholeView().setOnLongClickListener(this);
         } else if (getItemViewType(position) == TYPE_FOOTER) {
             ComRecyclerViewHolder comRecyclerViewHolder = (ComRecyclerViewHolder) holder;
-            //赋值
+            //bind data
             if (!canNotReadBottom) {
                 if (onRecyclerViewBottomListener != null) {
                     onRecyclerViewBottomListener.OnBottom();
@@ -226,7 +216,7 @@ public abstract class ComRecyclerAdapter<T> extends RecyclerView.Adapter<Recycle
     }
 
     /**
-     * EmptyView默认设置提示语方法
+     * make EmptyView show the right string
      */
     public void convertEmpty(ComRecyclerViewHolder comRecyclerViewHolder) {
         try {
@@ -261,26 +251,26 @@ public abstract class ComRecyclerAdapter<T> extends RecyclerView.Adapter<Recycle
     }
 
     /**
-     * Item布局赋值方法，需要重写
+     * ItemLayout  bind data
      */
     public abstract void convert(ComRecyclerViewHolder comRecyclerViewHolder, T t);
 
     /**
-     * Head布局赋值方法，按需要重写
+     * HeadLayout bind data
      */
     public void convertHeader(ComRecyclerViewHolder comRecyclerViewHolder) {
 
     }
 
     /**
-     * Foot布局赋值方法，按需要重写
+     * FootLayout bind data
      */
     public void convertFooter(ComRecyclerViewHolder comRecyclerViewHolder) {
 
     }
 
     /**
-     * 总Item个数
+     * all Item number
      */
     @Override
     public int getItemCount() {
@@ -310,7 +300,7 @@ public abstract class ComRecyclerAdapter<T> extends RecyclerView.Adapter<Recycle
 
 
     /**
-     * item点击事件
+     * item click event
      */
     public interface OnItemClickListener {
         void onClick(View v, int position);
@@ -330,7 +320,7 @@ public abstract class ComRecyclerAdapter<T> extends RecyclerView.Adapter<Recycle
     }
 
     /**
-     * item长按事件
+     * item long click event
      */
     public interface OnItemLongClickListener {
         void OnLongClick(View view, int position);
@@ -351,7 +341,7 @@ public abstract class ComRecyclerAdapter<T> extends RecyclerView.Adapter<Recycle
     }
 
     /**
-     * 监听到recyclerView底部的监听器
+     * recyclerView bottom listener
      */
     public interface OnRecyclerViewBottomListener {
         void OnBottom();
