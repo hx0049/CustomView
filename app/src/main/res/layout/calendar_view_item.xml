@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="#FFFFFF"
+    android:paddingTop="5dp"
+    android:paddingBottom="5dp">
+
+
+    <!--<TextView-->
+        <!--android:id="@+id/tv_six"-->
+        <!--android:layout_width="0px"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_weight="1"-->
+        <!--android:gravity="center"-->
+        <!--android:textSize="20sp"-->
+        <!--android:text="五" />-->
+
+    <TextView
+        android:id="@+id/tv_number"
+        android:text="15"
+        android:textSize="20sp"
+        android:textColor="@color/colorAccent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"/>
+    <View
+        android:id="@+id/v_point"
+        android:layout_gravity="center"
+        android:layout_width="5dp"
+        android:layout_height="5dp"
+        android:background="@color/colorPrimary"/>
+</LinearLayout>

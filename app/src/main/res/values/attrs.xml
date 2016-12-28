@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="TitleBar">
+        <attr name="android:text" />
+        <attr name="backgroundColor" format="color" />
+        <attr name="canBack" format="boolean" />
+        <attr name="showRightIcon" format="boolean" />
+        <attr name="rightIcon" format="reference|color" />
+        <attr name="titleTextSize" format="dimension" />
+        <attr name="titleTextColor" format="color" />
+        <attr name="showLine" format="boolean" />
+    </declare-styleable>
+
+    <declare-styleable name="ArcMenu">
+        <attr name="position">
+            <enum name="LEFT_TOP" value="0"/>
+            <enum name="LEFT_BOTTOM" value="1"/>
+            <enum name="RIGHT_TOP" value="2"/>
+            <enum name="RIGHT_BOTTOM" value="3"/>
+        </attr>
+        <attr name="radius" format="dimension"/>
+    </declare-styleable>
+
+
+    <declare-styleable name="DrawerLayout">
+        <attr name="offset" format="dimension"/>
+    </declare-styleable>
+
+
+
+    <declare-styleable name="BannerView">
+        <attr name="mode">
+            <enum name="MODE_ALL" value="0"/>
+            <enum name="MODE_CIRCLE" value="1"/>
+        </attr>
+        <attr name="roll_time" format="integer"/>
+    </declare-styleable>
+
+
+
+    <declare-styleable name="IndexView">
+        <attr name="show_all_letter" format="boolean"/>
+        <attr name="show_search_view" format="boolean"/>
+        <attr name="show_center_letter" format="boolean"/>
+    </declare-styleable>
+
+    <declare-styleable name="SlideMenu">
+        <attr name="right_length" format="dimension"/>
+    </declare-styleable>
+</resources>
