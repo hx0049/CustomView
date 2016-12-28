@@ -13,13 +13,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
-import hx0049.customview.commonAdapter.ComRecyclerAdapter;
-import hx0049.customview.commonAdapter.ComRecyclerViewHolder;
-import hx0049.customview.test.TestItemDecoration;
 import hx0049.customview.view.expandableview.ExpandableRecyclerAdapter;
 import hx0049.customview.view.expandableview.model.ExpandableModel;
 import hx0049.customview.view.slidedelete.SlideAdapter;
@@ -31,7 +27,7 @@ import hx0049.customview.viewgroup.ActionSheetUtils;
  */
 
 public class TestActivity extends Activity {
-    MyAdapter adapter;
+
     Random random = new Random();
     private List<String> data1;
 
@@ -53,7 +49,8 @@ public class TestActivity extends Activity {
         RecyclerView recyclerView;
         recyclerView = (RecyclerView) findViewById(R.id.rv);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-//        adapter = new MyAdapter(getApplicationContext(), getData());
+        //--------------可展开的RecyclerView
+//        MyAdapter adapter = new MyAdapter(getApplicationContext(), getData());
 //        adapter.setOnItemClickListener(new ExpandableRecyclerAdapter.OnItemClickListener() {
 //            @Override
 //            public void onItemClick(ExpandableModel model, int position) {
@@ -61,6 +58,8 @@ public class TestActivity extends Activity {
 //            }
 //        });
 //        recyclerView.setAdapter(adapter);
+
+        //--------------可侧滑删除的RecyclerView
         final MyAdapter3 adapter3 = new MyAdapter3(this, getData1());
         recyclerView.setAdapter(adapter3);
         adapter3.setDeleteListener(new SlideAdapter.DeleteListener() {
@@ -70,11 +69,10 @@ public class TestActivity extends Activity {
             }
         });
 
-//        ItemTouchHelper.Callback callback =
-//                new TestItemDecoration(adapter2);
-//        ItemTouchHelper touchHelper = new ItemTouchHelper(callback);
-//        touchHelper.attachToRecyclerView(recyclerView);
+
     }
+
+
 
     public List<ExpandableModel> getData() {
         List<ExpandableModel> result = new ArrayList<>();
@@ -141,31 +139,7 @@ public class TestActivity extends Activity {
         }
     }
 
-    class MyAdapter2 extends ComRecyclerAdapter<String> implements TestItemDecoration.ItemTouchHelperAdapter {
 
-        public MyAdapter2(Context context, List<String> list, int layoutId) {
-            super(context, list, layoutId);
-        }
-
-        @Override
-        public void convert(ComRecyclerViewHolder comRecyclerViewHolder, String s) {
-            comRecyclerViewHolder.setTextColor(R.id.text1, Color.BLUE);
-            comRecyclerViewHolder.setText(R.id.text1, s);
-        }
-
-        @Override
-        public void onItemMove(int fromPosition, int toPosition) {
-            Collections.swap(list, fromPosition, toPosition);
-            notifyItemMoved(fromPosition, toPosition);
-
-        }
-
-        @Override
-        public void onItemDismiss(int position) {
-            list.remove(position);
-            notifyItemRemoved(position);
-        }
-    }
 
     class MyAdapter extends ExpandableRecyclerAdapter {
 

@@ -15,53 +15,51 @@
         hx:canBack="true"
         hx:rightIcon="@drawable/add"
         hx:showRightIcon="true" />
-    <!--<hx0049.customview.view.indexview.IndexView-->
-        <!--android:id="@+id/index_view"-->
-        <!--hx:show_all_letter="false"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="match_parent">-->
 
-    <!--</hx0049.customview.view.indexview.IndexView>-->
+    <hx0049.customview.view.indexview.IndexView
+        android:id="@+id/index_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"
+        hx:show_all_letter="false">
 
-    <!--<hx0049.customview.viewgroup.FlowLayout-->
-        <!--android:id="@+id/fl"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"/>-->
+    </hx0049.customview.view.indexview.IndexView>
 
-    <!---->
+    <hx0049.customview.viewgroup.FlowLayout
+        android:id="@+id/fl"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone" />
 
-    <!--<hx0049.customview.view.banner.BannerView-->
-        <!--android:id="@+id/pg"-->
-        <!--hx:mode="MODE_CIRCLE"-->
-        <!--hx:roll_time="2000"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="400px">-->
 
-    <!--</hx0049.customview.view.banner.BannerView>-->
+    <hx0049.customview.view.banner.BannerView
+        android:id="@+id/pg"
+        android:layout_width="match_parent"
+        android:layout_height="400px"
+        android:visibility="gone"
+        hx:mode="MODE_CIRCLE"
+        hx:roll_time="2000">
 
+    </hx0049.customview.view.banner.BannerView>
 
 
     <hx0049.customview.view.calendar.CalendarView
         android:id="@+id/calendar_view"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:visibility="gone">
 
     </hx0049.customview.view.calendar.CalendarView>
-    <!--<RelativeLayout-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="match_parent">-->
-
-        <TextView
-            android:layout_alignParentBottom="true"
-            android:id="@+id/tv_touch"
-            android:background="@color/colorPrimary"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="afafafdasdasd"/>
-
-    <!--</RelativeLayout>-->
 
 
+    <TextView
+        android:id="@+id/tv_touch"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentBottom="true"
+        android:background="@color/colorPrimary"
+        android:text="上面的标题栏就是TitleBar" />
 
 
 </LinearLayout>
