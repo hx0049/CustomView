@@ -14,7 +14,7 @@ compile 'hx0049.customview:CustomView:1.0.0'
         hx:canBack="true"
         hx:showRightIcon="false" />
 ```
-####BannerView
+####BannerView: rolling picture automatically
 ```java
  <hx0049.customview.view.banner.BannerView
         android:id="@+id/pg"
@@ -45,9 +45,75 @@ compile 'hx0049.customview:CustomView:1.0.0'
 ####ActionSheetUtils
 ####ArcMenu
 ```java
+<com.myapplication.ArcMenu
+        android:layout_width="match_parent"
+        hx:Radius="300px"
+        hx:position="LEFT_BOTTOM"
+        android:layout_height="match_parent">
+        <ImageView
+            android:layout_width="60px"
+            android:layout_height="60px"
+            android:background="@drawable/spots_blue_true"/>
+        <ImageView
+            android:layout_width="60px"
+            android:layout_height="60px"
+            android:background="@drawable/spots_blue_true"/>
+        <ImageView
+            android:layout_width="60px"
+            android:layout_height="60px"
+            android:background="@drawable/spots_blue_true"/>
+        <ImageView
+            android:layout_width="60px"
+            android:layout_height="60px"
+            android:background="@drawable/spots_blue_true"/>
+        <ImageView
+            android:layout_width="60px"
+            android:layout_height="60px"
+            android:background="@drawable/spots_blue_true"/>
+
+
+    </com.myapplication.ArcMenu>
 ```
 ####DrawerLayout
 ```java
+<hx0049.customview.viewgroup.DrawerLayout
+        android:id="@+id/myscrollview"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        hx:offset="300px">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#0f0">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="50px"
+                    android:text="111222333444555666777999999888" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#00f">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="50px"
+                    android:text="1222211222333444555666777999999888"
+                    />
+            </LinearLayout>
+        </LinearLayout>
+
+    </hx0049.customview.viewgroup.DrawerLayout>
 ```
 ####FlowLayout
 ```java
