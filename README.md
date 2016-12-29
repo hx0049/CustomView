@@ -83,7 +83,7 @@ compile 'hx0049.customview:CustomView:1.0.0'
 ####ActionSheetUtils
 ####ArcMenu
 ```java
-<com.myapplication.ArcMenu
+<hx0049.customview.viewgroup.ArcMenu
         android:layout_width="match_parent"
         hx:Radius="300px"
         hx:position="LEFT_BOTTOM"
@@ -110,7 +110,7 @@ compile 'hx0049.customview:CustomView:1.0.0'
             android:background="@drawable/spots_blue_true"/>
 
 
-    </com.myapplication.ArcMenu>
+    </hx0049.customview.viewgroup.ArcMenu>
 ```
 ####DrawerLayout
 ```java
@@ -162,4 +162,43 @@ compile 'hx0049.customview:CustomView:1.0.0'
 ```
 ###RecyclerViewCommonAdapter
 ####ComRecyclerViewAdapter
+```java
+    class MyAdapter extends ComRecyclerAdapter<String>{
+        
+        public MyAdapter(Context context, List<String> list, int layoutId) {
+            super(context, list, layoutId);
+        }
+
+        @Override
+        public void convert(ComRecyclerViewHolder viewHolder, String s) {
+            viewHolder.setText(android.R.id.text1,s);
+        }
+    }
+```
+```java
+        MyAdapter myAdapter = new MyAdapter(this,getData(),android.R.layout.simple_list_item_1);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.setAdapter(myAdapter);
+```
 ####ComAdapter
+```java
+        ComAdapter<String> adapter = new ComAdapter<String>(this);
+        adapter.setData(getData())
+                .setItemView(android.R.layout.simple_list_item_1)
+                .setShowItem(new ComAdapter.ShowItem() {
+                    @Override
+                    public void show(ComRecyclerViewHolder viewHolder, Object object) {
+                        viewHolder.setText(android.R.id.text1,(String)object);
+                       
+                    }
+                })
+                .setHeadView(android.R.layout.select_dialog_item)
+                .setShowHead(new ComAdapter.ShowHead() {
+                    @Override
+                    public void show(ComRecyclerViewHolder viewHolder) {
+                        TextView tv = viewHolder.getView(android.R.id.text1);
+                        tv.setText("I am head!");
+                    }
+                })
+                .loadVertical(recyclerView);
+```
