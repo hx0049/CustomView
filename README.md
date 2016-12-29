@@ -169,7 +169,7 @@ public class ExpandableModel<T> {
         });
 ```
 ####SlideDeleteAdapter
-``java
+```java
         class MyAdapter3 extends SlideAdapter {
         Context context;
         List<String> list;
