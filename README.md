@@ -35,7 +35,7 @@ compile 'hx0049.customview:CustomView:1.0.0'
         hx:roll_time="2000"/>
 ```
 
-####IndexView
+####IndexView: just like the address list
 ```java
  <hx0049.customview.view.indexview.IndexView
         android:id="@+id/index_view"
@@ -61,8 +61,98 @@ compile 'hx0049.customview:CustomView:1.0.0'
         });
 ```
 
-####ExpandableRecyclerviewAdapter
-####Calendar
+####ExpandableRecyclerviewAdapter: just like the ExpandableListView
+```java
+        class MyAdapter extends ExpandableRecyclerAdapter {
+
+        public MyAdapter(Context context, List<ExpandableModel> dataList) {
+            super(context, dataList);
+        }
+
+        @Override
+        protected RecyclerView.ViewHolder onCreateChildViewHolder(ViewGroup parent) {
+            View view = LayoutInflater.from(parent.getContext()).inflate(android.R.layout.simple_list_item_1, parent, false);
+            return new ChildViewHolder(view);
+        }
+
+        @Override
+        protected RecyclerView.ViewHolder onCreateParentViewHolder(ViewGroup parent) {
+            View view = LayoutInflater.from(parent.getContext()).inflate(android.R.layout.select_dialog_item, parent, false);
+            return new ParentViewHolder(view);
+        }
+
+
+        @Override
+        protected void onBindChildViewHolder(RecyclerView.ViewHolder holder, int index, int childIndex) {
+            ChildViewHolder viewHolder = (ChildViewHolder) holder;
+            viewHolder.tvChild.setText((String) (dataList.get(index).getChildList().get(childIndex)));
+        }
+
+        @Override
+        protected void onBindParentViewHolder(RecyclerView.ViewHolder holder, int index) {
+            ParentViewHolder viewHolder = (ParentViewHolder) holder;
+            viewHolder.tvParent.setText(dataList.get(index).getName());
+        }
+
+        class ParentViewHolder extends RecyclerView.ViewHolder {
+            TextView tvParent;
+
+            public ParentViewHolder(View itemView) {
+                super(itemView);
+                tvParent = (TextView) itemView.findViewById(android.R.id.text1);
+                tvParent.setTextColor(Color.BLUE);
+            }
+        }
+
+        class ChildViewHolder extends RecyclerView.ViewHolder {
+            TextView tvChild;
+
+            public ChildViewHolder(View itemView) {
+                super(itemView);
+                tvChild = (TextView) itemView.findViewById(android.R.id.text1);
+                tvChild.setTextColor(Color.DKGRAY);
+            }
+        }
+    }
+```
+```java
+public class ExpandableModel<T> {
+    String name;
+    List<T> childList;
+
+    public ExpandableModel(String name, List<T> childList) {
+        this.name = name;
+        this.childList = childList;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public List<T> getChildList() {
+        return childList;
+    }
+
+    public void setChildList(List<T> childList) {
+        this.childList = childList;
+    }
+}
+```
+```java
+        MyAdapter adapter = new MyAdapter(getApplicationContext(), getData());
+        adapter.setOnItemClickListener(new ExpandableRecyclerAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(ExpandableModel model, int position) {
+                Toast.makeText(TestActivity.this, (String) (model.getChildList().get(position)), Toast.LENGTH_SHORT).show();
+            }
+        });
+        recyclerView.setAdapter(adapter);
+```
+####Calendar:for practice
 ```java
     <hx0049.customview.view.calendar.CalendarView
         android:id="@+id/calendar_view"
@@ -79,8 +169,74 @@ compile 'hx0049.customview:CustomView:1.0.0'
         });
 ```
 ####SlideDeleteAdapter
+``java
+        class MyAdapter3 extends SlideAdapter {
+        Context context;
+        List<String> list;
+        public MyAdapter3(Context context, List<String> list) {
+            this.context = context;
+            this.list = list;
+
+        }
+        @Override
+        protected SlideAdapter.SlideViewHolder CreateSlideViewHolder(SlideMenu slideMenu) {
+            return new MySlideViewHolder(slideMenu);
+        }
+
+        @Override
+        protected int getItemLayoutId() {
+            return  R.layout.activity_test_item;
+        }
+
+        @Override
+        protected int getMenuWidthPixel() {
+            return 200;
+        }
+
+        @Override
+        public void onBindViewHolder(SlideAdapter.SlideViewHolder holder, int position) {
+            MySlideViewHolder viewHolder=(MySlideViewHolder) holder;
+            viewHolder.textView.setText(list.get(position));
+            viewHolder.textView.setTextColor(Color.BLUE);
+        }
+
+        @Override
+        public int getItemCount() {
+            return list.size();
+        }
+
+        class MySlideViewHolder extends SlideViewHolder {
+            TextView textView;
+
+            public MySlideViewHolder(View itemView) {
+                super(itemView);
+                textView = (TextView)itemView.findViewById(R.id.text1);
+            }
+        }
+    }
+```
+```java
+        MyAdapter3 adapter3 = new MyAdapter3(this, getData1());
+        recyclerView.setAdapter(adapter3);
+        adapter3.setDeleteListener(new SlideAdapter.DeleteListener() {
+            @Override
+            public void delete(int position) {
+                adapter3.list.remove(position);
+            }
+        });
+```
 ###ViewGroup
 ####ActionSheetUtils
+```java
+        ActionSheetUtils actionSheetUtils = ActionSheetUtils.getInstance(this);
+        actionSheetUtils.showView(findViewById(R.id.rv).getRootView(), "happy", "sad", "cry", "laugh");
+        actionSheetUtils.setOnActionSheetClickListener(new ActionSheetUtils.OnActionSheetClickListener() {
+            @Override
+            public void onClick(int position, String value) {
+                Toast.makeText(TestActivity.this, "position = " + position + " " + value, Toast.LENGTH_SHORT).show();
+            }
+        });
+```
 ####ArcMenu
 ```java
 <hx0049.customview.viewgroup.ArcMenu
